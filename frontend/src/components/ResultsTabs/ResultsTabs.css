@@ -1,0 +1,250 @@
+.rt-wrap {
+  border: 1px solid var(--bd);
+  border-radius: var(--r-xl);
+  overflow: hidden;
+}
+
+/* Tab bar */
+.rt-tabbar {
+  display: flex;
+  background: var(--bg-1);
+  border-bottom: 1px solid var(--bd);
+  padding: 0 4px;
+  overflow-x: auto;
+  gap: 2px;
+}
+
+.rt-tabbar::-webkit-scrollbar { height: 0; }
+
+.rt-tab {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 14px 18px;
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  color: var(--tx-2);
+  font-family: var(--font-ui);
+  font-size: 13.5px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.18s;
+  white-space: nowrap;
+  margin-bottom: -1px;
+}
+
+.rt-tab:hover { color: var(--tx); }
+
+.rt-tab.active {
+  color: var(--amber);
+  border-bottom-color: var(--amber);
+}
+
+/* Content area */
+.rt-content {
+  background: var(--bg-root);
+  padding: 28px;
+  min-height: 360px;
+}
+
+/* Pane */
+.rt-pane {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* Block */
+.rt-block {
+  background: var(--bg-1);
+  border: 1px solid var(--bd);
+  border-radius: var(--r-lg);
+  padding: 22px 24px;
+}
+
+.rt-block-hd {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--tx-3);
+}
+
+.rt-copy {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  background: var(--bg-3);
+  border: 1px solid var(--bd);
+  border-radius: 7px;
+  color: var(--tx-2);
+  cursor: pointer;
+  transition: all 0.18s;
+}
+.rt-copy:hover { color: var(--amber); border-color: var(--amber); }
+
+/* Summary */
+.rt-summary-body {
+  font-size: 15px;
+  line-height: 1.78;
+  color: var(--tx);
+}
+
+/* Notes */
+.rt-section-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--tx);
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.rt-notes-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.rt-notes-list li {
+  display: flex;
+  gap: 10px;
+  font-size: 14px;
+  color: var(--tx);
+  line-height: 1.65;
+}
+
+.rt-bullet {
+  color: var(--amber);
+  flex-shrink: 0;
+  font-size: 16px;
+  line-height: 1.4;
+}
+
+/* Timestamps */
+.rt-ts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 12px;
+}
+
+.rt-ts-card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 16px;
+  background: var(--bg-1);
+  border: 1px solid var(--bd);
+  border-radius: var(--r);
+  text-decoration: none;
+  position: relative;
+  transition: all 0.2s;
+}
+
+.rt-ts-card:hover {
+  border-color: var(--amber);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(245,166,35,0.1);
+}
+
+.rt-ts-time {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--amber);
+  background: var(--amber-subtle);
+  padding: 3px 9px;
+  border-radius: 5px;
+  width: fit-content;
+}
+
+.rt-ts-desc {
+  font-size: 13.5px;
+  color: var(--tx);
+  line-height: 1.5;
+}
+
+.rt-ts-ext {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  color: var(--tx-3);
+}
+
+/* Actions */
+.rt-actions-count {
+  font-size: 12px;
+  color: var(--green);
+}
+
+.rt-act-track {
+  height: 4px;
+  background: var(--bg-3);
+  border-radius: 99px;
+  overflow: hidden;
+  margin-bottom: 18px;
+}
+
+.rt-act-fill {
+  height: 100%;
+  background: var(--green);
+  border-radius: 99px;
+  transition: width 0.4s ease;
+}
+
+.rt-actions-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.rt-action-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: var(--r);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all 0.18s;
+}
+
+.rt-action-item:hover {
+  background: var(--bg-2);
+  border-color: var(--bd);
+}
+
+.rt-action-item.checked .rt-action-text {
+  text-decoration: line-through;
+  color: var(--tx-3);
+}
+
+.rt-checkbox {
+  width: 20px;
+  height: 20px;
+  border: 1.5px solid var(--bd-2);
+  border-radius: 6px;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  margin-top: 1px;
+  transition: all 0.18s;
+  color: white;
+}
+
+.rt-checkbox.on {
+  background: var(--green);
+  border-color: var(--green);
+}
+
+.rt-action-text {
+  font-size: 14px;
+  color: var(--tx);
+  line-height: 1.6;
+}
