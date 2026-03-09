@@ -1,9 +1,10 @@
-FROM python:3.11-slim
+FROM python:3.11.9-slim-bookworm
 
 RUN apt-get update && apt-get install -y \
     ffmpeg \
     wget \
-    build-essential \
+    gcc \
+    g++ \
     && rm -rf /var/lib/apt/lists/*
 
 RUN wget -q https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp -O /usr/local/bin/yt-dlp \
@@ -12,7 +13,7 @@ RUN wget -q https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp -O 
 WORKDIR /app
 
 COPY requirements.txt .
-RUN pip install --no-cache-dir --upgrade pip setuptools wheel
+RUN pip install --no-cache-dir --upgrade pip==24.0
 RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
