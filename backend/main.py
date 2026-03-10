@@ -21,7 +21,7 @@ from pipeline.vector_store import save_index, search_index, index_exists
 load_dotenv()
 
 app = FastAPI(title="VidIntel API", version="2.0.0")
-app.add_middleware(CORSMiddleware, allow_origins=["http://localhost:3000"], allow_methods=["*"], allow_headers=["*"])
+app.add_middleware(CORSMiddleware, allow_origins=["http://localhost:3000","vidintel-tau.vercel.app"], allow_methods=["*"], allow_headers=["*"])
 
 JOBS        = {}
 RESULTS_DIR = Path("data/results");  RESULTS_DIR.mkdir(parents=True, exist_ok=True)
