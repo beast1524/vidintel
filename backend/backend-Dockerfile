@@ -7,6 +7,7 @@ RUN apt-get update && apt-get install -y \
     g++ \
     && rm -rf /var/lib/apt/lists/*
 
+# Always get latest yt-dlp
 RUN wget -q https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp -O /usr/local/bin/yt-dlp \
     && chmod a+rx /usr/local/bin/yt-dlp
 
@@ -16,7 +17,6 @@ COPY requirements.txt .
 
 RUN pip install --no-cache-dir --upgrade pip
 
-# Install CPU-only torch with compatible version
 RUN pip install --no-cache-dir \
     numpy==1.26.4 \
     torch==2.1.0 \
@@ -24,6 +24,45 @@ RUN pip install --no-cache-dir \
 
 RUN pip install --no-cache-dir -r requirements.txt --no-deps sentence-transformers==2.7.0
 RUN pip install --no-cache-dir -r requirements.txt
+
+# Update yt-dlp to absolute latest at build time
+RUN pip install --no-cache-dir yt-dlp --upgrade
+
+COPY . .
+
+RUN mkdir -p data/audio data/indexes data/results data/uploads
+
+EXPOSE 8000
+
+CMD ["sh", "-c", "uvicorn main:app --host 0.0.0.0 --port ${PORT:-8000}"]FROM python:3.11.9-slim-bookworm
+
+RUN apt-get update && apt-get install -y \
+    ffmpeg \
+    wget \
+    gcc \
+    g++ \
+    && rm -rf /var/lib/apt/lists/*
+
+# Always get latest yt-dlp
+RUN wget -q https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp -O /usr/local/bin/yt-dlp \
+    && chmod a+rx /usr/local/bin/yt-dlp
+
+WORKDIR /app
+
+COPY requirements.txt .
+
+RUN pip install --no-cache-dir --upgrade pip
+
+RUN pip install --no-cache-dir \
+    numpy==1.26.4 \
+    torch==2.1.0 \
+    --index-url https://download.pytorch.org/whl/cpu
+
+RUN pip install --no-cache-dir -r requirements.txt --no-deps sentence-transformers==2.7.0
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Update yt-dlp to absolute latest at build time
+RUN pip install --no-cache-dir yt-dlp --upgrade
 
 COPY . .
 
