@@ -31,21 +31,17 @@ vidintel/
 └── README.md
 ```
 
-## How to Run (3 terminals)
+## How to Run (2 terminals)
 
-### Terminal 1 — Ollama (LLM)
-```bash
-ollama serve
-```
 
-### Terminal 2 — Backend
+### Terminal 1 — Backend
 ```bash
 cd backend
 venv\Scripts\activate
 python main.py
 ```
 
-### Terminal 3 — Frontend
+### Terminal 2 — Frontend
 ```bash
 cd frontend
 npm start
